@@ -1,0 +1,91 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>課堂作業06</title>
+	<style>
+		h4{
+			color:red;
+		}
+		label{
+			color:blue;
+		}
+		input{
+			color:brown;
+		}
+		div{
+			color:blue;
+			margin:5px;
+		}
+	</style>
+</head>
+<body>
+<form id="form01">
+	<label>姓名:</label>
+	<input type="text"name="name01" value="周家安"><br>
+	<label>收件住址:</label>
+	<input type="text"name="address01" value="台北市松山區菸廠路88號5樓之8"><br>
+	<label>電話:</label>
+	<input type="tel"name="tel01" value="0966582525"><br>
+	<label>電子郵件:</label>
+	<input type="email"name="email01" value="joanne92109@gmail.com"><br>
+	<label>指定送貨日期:</label>
+	<input type="date"name="date01"><br>
+	<label>水果種類(三選一):</label><br>
+	<input type="radio"name="fruit01" id="fruit01" value="麝香葡萄(1.2公斤)">麝香葡萄(1.2公斤)1299元<br>
+	<input type="radio"name="fruit02" id="fruit02" value="紐西蘭黑櫻桃(2公斤)">紐西蘭黑櫻桃(2公斤) 2799元<br>
+	<input type="radio"name="fruit03" id="fruit03" value="日本青森蜜蘋果(10公斤)">日本青森蜜蘋果(10公斤)2900元<br>
+</form>
+<br>
+<button onclick="shoppingInfo()"><h4>結帳</h4></button>
+<div id="demo"></div>
+<script>
+	function shoppingInfo(){
+        const x=document.getElementById("form01");
+        var item ="";
+        var price =0;
+        var text ="<h4>您的購物資訊如下:</h4>";
+        var i;
+        for (i=0;i<5;i++){
+            switch (i){
+                case 0:
+                    item ="姓名:";
+                    break;
+                case 1:
+                    item ="收件住址:";
+                    break;
+                case 2:
+                    item ="電話:";
+                    break;
+                case 3:
+                    item ="電子郵件:";
+                    break;
+                case 4:
+                    item ="指定送貨日期:";
+                    break;
+            }
+            text +=item +x.elements[i].value+"<br>";
+        }
+        for(i=5; i<=7;i++){
+            if (x.elements[i].checked==true){
+                switch (i){
+                    case 5:
+                        price= 1299;
+                        break;
+                    case 6:
+                        price= 2799;
+                        break;
+                    case 7:
+                        price= 2900;
+                        break;
+                }
+                text+= "水果種類:"+x.elements[i].value +"<br>";
+                text+= "價格合計:"+price +"元<br>";
+            }
+        }
+        document.getElementById("demo").innerHTML =text;
+    }
+</script>
+</body>
+</html>
